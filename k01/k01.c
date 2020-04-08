@@ -3,45 +3,45 @@
 #include <string.h>
 #include <math.h>
 
-extern double ave_online(double val,double ave)
-extern double var_online()
+double ave_online(double val,double ave,int count){
+    return ((count-1)*ave + val)/count;
+}
 
-int main(void)
-{
-    double val;
-    char fname[FILENAME_MAX];
-    char buf[256];
-    FILE* fp;
+double var_online(double new_data,double ave,double ave2,double new_ave,int count){
+    return ((count-1)/count*ave2+pow(new_data,2)/count) - pow(((count-1)/count*ave+new_data/count),2);
+}
 
-    printf("input the filename of sample:");
-    fgets(fname,sizeof(fname),stdin);
-    fname[strlen(fname)-1] = '\0';
-    printf("the filename of sample: %s\n",fname);
+int main(void){
+
+    FILE *fp;
+    char *fname = "heights_male.csv";
+    double data,new_data,total=0,total2=0,ave,ave2,var;
+    int count=0;
 
     fp = fopen(fname,"r");
     if(fp==NULL){
-        fputs("File open error\n",stderr);
-        exit(EXIT_FAILURE);
+        printf("Not open¥n");
+        return -1;
     }
 
-    while(fgets(buf,sizeof(buf),fp) != NULL){
-        sscanf(buf,"%lf",&val);
-
-
-    
-
-
-
+    //オリジナルデータ
+    while(fscanf(fp,"%lf",&data) != EOF){
+        total += data;
+        total2 += pow(data,2);
+        count++;
     }
+    ave = total/count;
+    ave2 = total2/count;
 
-    if(fclose(fp) == EOF){
-        fputs("file close error\n",stderr);
-        exit(EXIT_FAILURE);
-    }
-
-
+    double new_ave,new_var;
+    //データ追加
+    printf("ADD DATA: ");
+    scanf("%lf",&new_data);
+    count++;
+    new_ave = ave_online(new_data,ave,count);
+    new_var = var_online(new_data,ave,ave2,new_ave,count);
+    printf("Ave: %lf\nVar: %lf\n",new_ave,new_var);
     return 0;
-
-
 }
+
 
