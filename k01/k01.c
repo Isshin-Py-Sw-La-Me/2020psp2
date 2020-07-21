@@ -3,20 +3,20 @@
 #include <string.h>
 #include <math.h>
 
-double ave_online(double val,double ave,int count){
-    return ((count-1)*ave + val)/count;
+extern double ave_online(int i, double val, double ave){
+    ave = ((i-1)*ave2+val)/i;
+    return ave;
 }
 
-double var_online(double new_data,double ave,double ave2,double new_ave,int count){
-    return ((count-1)/count*ave2+pow(new_data,2)/count) - pow(((count-1)/count*ave+new_data/count),2);
+extern double var_online(int i,double val,double s,double ave){
+    return ((i-1)*s+val*val)/i-pow((((i-1)*ave+val)/i),2);
 }
 
 int main(void){
 
     FILE *fp;
     char *fname = "heights_male.csv";
-    double data,new_data,total=0,total2=0,ave,ave2,var;
-    int count=0;
+    char buf[256];
 
     fp = fopen(fname,"r");
     if(fp==NULL){
@@ -24,23 +24,27 @@ int main(void){
         return -1;
     }
 
-    //オリジナルデータ
-    while(fscanf(fp,"%lf",&data) != EOF){
-        total += data;
-        total2 += pow(data,2);
-        count++;
-    }
-    ave = total/count;
-    ave2 = total2/count;
+    int i = 0;
+    double val,ave,p,s_mean,s_variance,p_mean,p_variance,s=0,ave2=0;
+    while(fgets(buf,sizeof(buf),fp) !=NULL){
+        sscanf(buf,"%lf",&val);
+        i++;
+        ave = ave_online(i,val,ave);
+        s_variance=var_online(i,val,s,ave2);
+        s=((i-1)*save+val*val)/i;
+        ave2=((i-1)*ave2+val)/i;
+        s_mean=ave;
 
-    double new_ave,new_var;
-    //データ追加
-    printf("ADD DATA: ");
-    scanf("%lf",&new_data);
-    count++;
-    new_ave = ave_online(new_data,ave,count);
-    new_var = var_online(new_data,ave,ave2,new_ave,count);
-    printf("Ave: %lf\nVar: %lf\n",new_ave,new_var);
+        p_variance=i*s_variance/(i-1);
+        p_mean=s_mean;
+        p=pow(p_variance/i,0.5);
+    }
+
+    printf("s_mean: %lf\n",s_mean );
+    printf("s_variance:%lf\n",s_variance );
+    printf("p_mean:%lf p:%lf\n", p_mean,p);
+    printf("p_variance:%lf\n", p_variance);
+
     return 0;
 }
 
