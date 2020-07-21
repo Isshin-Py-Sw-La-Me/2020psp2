@@ -7,7 +7,11 @@ extern double p_stdnorm(double z);
 
 int main(void)
 {
-    double val;
+    double ma = 170.8;
+    double mb = 169.7;
+    double sa = 5.43;
+    double sb = 5.5;
+    double val,z1,z2,x1,x2,a=1,b=1;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
@@ -26,11 +30,12 @@ int main(void)
 
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
-
-
-    
-
-
+        z1 = (val-ma)/sa;
+        z2 = (val-mb)/sb;
+        x1=p_stdnorm(z1);
+        x2=p_stdnorm(z2);
+        a=a*x1;
+        b=b*x2;
 
     }
 
