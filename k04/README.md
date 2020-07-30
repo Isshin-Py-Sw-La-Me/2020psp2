@@ -39,3 +39,23 @@ No data
 
 ## 修正履歴
 
+[comment #20200731 sonoda]
+- `int n=0`が必要です．
+- 見ていた課題内容が古かったようで，直しておきました．ソースコードにある，
+  ```
+  extern void get(int n_m,int all, double* lower,double* upper);
+  extern int chose(int n,int r);
+  ```
+  と
+  ```
+  	printf("====================\n");
+		printf("Number of male sample : %d\n",n_m );
+		printf("Number of female sample: %d\n",n_f );
+		printf("Male ratio : %lf\n",(double)n_m/all );
+  ```
+  と
+  ```
+  get(n_m,all,&lower,&upper);
+  printf("Population Male ration (estimated) : %lf -- %lf\n",lower,upper );
+  ```
+   は不要です． 
