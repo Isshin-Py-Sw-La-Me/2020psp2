@@ -58,4 +58,19 @@ population variance (estimated)：
 
 ## 修正履歴
 
-説明は「かきくけこ」だ！
+[comment #20200731 sonoda]
+- extern はプロトタイプ宣言（関数定義の1行目だけ）につけます．関数本体にはつけません．
+- ave_onlineの引数は，i, val, ave ですから，中のave2はaveの間違いでしょうか．
+  - c言語の`=`は「右辺の結果を左辺に代入する」です．いわゆる上書きです．右辺にあるaveは入力，左辺のaveは代入先です．
+- 何やらこんがらがっているようです．
+  i個目の値　val を読み込んだあと，すでにある平均ave，二乗平均saveを使って，ave_new, var, save_new を計算します． 
+  ```
+  ave_new = ave_online(i, val, ave);
+  var = var_online(i, val, save, ave); 
+  save_new = ave_online(i, val*val, save);
+  /* 計算し終えたら，ave, saveを更新*/
+  ave = ave_new;
+  save = save_new;
+  ```
+- s_mean, s_variance, p_mean, p_varianceは，すべてデータを読み終わってから（for文を抜けてから）値をいれたほうがいいです．
+- 上の「入出力結果」の項に，実際の実行結果をコピペしてください．
