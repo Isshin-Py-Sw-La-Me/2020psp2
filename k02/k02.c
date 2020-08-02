@@ -44,8 +44,8 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 
-    printf("L_A: %f\n",max_val);
-    printf("L_B: %f\n",min_val);
+    printf("L_A: %f\n",a);
+    printf("L_B: %f\n",b);
 
     return 0;
 
