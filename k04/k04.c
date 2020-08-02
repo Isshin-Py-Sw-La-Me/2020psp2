@@ -4,9 +4,6 @@
 #include <math.h>
 
 
-extern void get(int n_m,int all, double* lower,double* upper);
-extern int chose(int n,int r);
-
 struct D{double ID;int sex;double height;};
 
 int main(void){
@@ -18,6 +15,7 @@ int main(void){
 	int sex;
 	double lower,upper;
 	struct D data[14];
+	int n = 0;
 
 	printf("input the filename of smaple height\n");
 	fgets(fname,sizeof(fname),stdin);
@@ -86,10 +84,6 @@ int main(void){
 		}
 		printf("---\n");
 
-		printf("====================\n");
-		printf("Number of male sample : %d\n",n_m );
-		printf("Number of female sample: %d\n",n_f );
-		printf("Male ratio : %lf\n",(double)n_m/all );
 
 		if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
@@ -100,9 +94,6 @@ int main(void){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
     	}
-
-    	get(n_m,all,&lower,&upper);
-    	printf("Population Male ration (estimated) : %lf -- %lf\n",lower,upper );
 
     	return 0;
 }
