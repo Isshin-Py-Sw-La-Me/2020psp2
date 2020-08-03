@@ -29,4 +29,14 @@ Likelihood for B：
 ```
 
 ## 修正履歴
-
+[comment #20200731 sonoda]
+- ```
+  printf("L_A: %f\n",max_val);
+  printf("L_B: %f\n",min_val);
+  ```
+  としてるけど，
+  ```
+  printf("L_A: %f\n",a);
+  printf("L_B: %f\n",b);
+  ```
+  だね．もっというと，aとbとか変数名を1文字にはしないのが原則です．ということで，aとかbのかわりにL1とかL2とかにしましょう．
