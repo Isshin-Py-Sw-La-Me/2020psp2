@@ -48,4 +48,6 @@ int main(void){
     return 0;
 }
 
-
+// ADD DATA: 253
+// Ave: 182.678889
+// Var: 6321.876543
