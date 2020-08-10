@@ -59,3 +59,8 @@ No data
   printf("Population Male ration (estimated) : %lf -- %lf\n",lower,upper );
   ```
    は不要です． 
+
+
+[comment #20200804 sonoda]
+- OKです．課題4完了．
+- コードの説明を埋めておいてください．
