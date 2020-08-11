@@ -48,12 +48,9 @@ bb35318031 豊永一心
 ## 入出力結果
 
 ```
-input the filename of sample:../sample/heights_male.csv
-the filename of sample: ../sample/heights_male.csv
-sample mean：
-sample variance：
-population mean (estimated)：
-population variance (estimated)：
+ADD DATA: 253
+Ave: 182.678889
+Var: 6321.876543
 ```
 
 ## 修正履歴

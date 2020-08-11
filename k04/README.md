@@ -18,13 +18,19 @@ aa83988848 薗田光太郎
 例えば，ID 45313125のデータを調べたいとき，
 
 ```
-Input the filename of sample height : ../sample/heights.csv
-Input the filename of sample ID : ../sample/IDs.csv
-Which ID's data do you want? : 45313125
+input the filename of smaple height
+../sample/heights.csv
+the file name of sample: ../sample/heights.csv
+input the filename of sample ID
+../sample/IDs.csv
+the filename of sample: ../sample/IDs.csv
+which ID's data do you want?
+45313125
 ---
-ID : 45313125
-gender : Female
-height : 152.4
+ID:45313125
+gender:female
+height:152.4
+---
 ```
 
 例えば，ID 45313124のデータを調べたいとき，
