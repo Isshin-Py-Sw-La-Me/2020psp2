@@ -4,7 +4,7 @@
 #include <math.h>
 
 double ave_online(int i, double val, double ave){
-    ave = ((i-1)*ave2+val)/i;
+    ave = ((i-1)*ave+val)/i;
     return ave;
 }
 
@@ -34,15 +34,15 @@ int main(void){
         save_new = ave_online(i, val*val, save); 
         ave = ave_new;
         save = save_new;
-
-        p_variance=i*var/(i-1);
-        p_mean=save;
-        p=pow(p_variance/i,0.5);
     }
 
-    printf("s_mean: %lf\n",save );
+    p_variance=i*var/(i-1);
+        p_mean=ave;
+        p=pow(p_variance/i,0.5);
+
+    printf("s_mean: %lf\n",ave );
     printf("s_variance:%lf\n",s_variance );
-    printf("p_mean:%lf p:%lf\n", p_mean,p);
+    printf("p_mean:%lf p:%lf\n", ave,p);
     printf("p_variance:%lf\n", p_variance);
 
     return 0;
