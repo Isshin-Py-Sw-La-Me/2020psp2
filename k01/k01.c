@@ -41,7 +41,7 @@ int main(void){
         p=pow(p_variance/i,0.5);
 
     printf("s_mean: %lf\n",ave );
-    printf("s_variance:%lf\n",s_variance );
+    printf("s_variance:%lf\n",var );
     printf("p_mean:%lf p:%lf\n", ave,p);
     printf("p_variance:%lf\n", p_variance);
 
